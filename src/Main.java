@@ -2,19 +2,23 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        System.out.println("Please enter the name you would like to search for: ");
-        Scanner kb = new Scanner(System.in);
-        String name = kb.nextLine();
+        if (args.length != 3) {
+            System.out.println("need 3 arguments");
+        } else if (!Objects.equals(args[0], "search")) {
+            System.out.println("args should be formatted as 'search {pattern} {file}'");
+        } else {
 
-        List<String> lines = Files.readAllLines(Paths.get("src/demo.txt"));
-        for (String line : lines) {
-            if (line.contains(name)) {
-                System.out.println(line);
+            List<String> lines = Files.readAllLines(Paths.get(args[2]));
+            for (String line : lines) {
+                if (line.contains(args[1])) {
+                    System.out.println(line);
+                }
             }
         }
     }

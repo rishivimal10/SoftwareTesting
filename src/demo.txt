@@ -1,3 +1,0 @@
-cat bad test toronto
-hello bye hello
-hello cat bye
